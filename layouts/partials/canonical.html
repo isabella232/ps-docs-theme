@@ -1,0 +1,17 @@
+{{- if .Params.canonicalUrl }}
+  <link rel="canonical" href="{{ .Params.canonicalUrl }}">
+{{- else if and
+    .Site.Params.versions.current
+    .FirstSection.Params.versionId
+    (ne .FirstSection.Params.versionId .Site.Params.versions.current)
+-}}
+    {{/* Show the canonical link if this page is not in the current version
+       * AND a copy of this page exists in the current version section
+       */ -}}
+    {{- $pagePathParts := (split .File.Path "/") }}
+    {{- $basePath := delimit (after 1 $pagePathParts) "/" }}
+    {{- $canonicalPath := printf "%s/%s" .Site.Params.versions.current $basePath }}
+    {{- with .Site.GetPage $canonicalPath -}}
+        <link rel="canonical" href="{{ .Permalink }}">
+    {{- end }}
+{{- end -}}
