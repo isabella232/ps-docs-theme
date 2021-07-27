@@ -14,18 +14,23 @@
     <div class="highlightable">
     <ul class="topics">
 
+      {{/* First sections (root sections) are used for versions.
+         * We want the menu to either show the current version (if the page we are in is within that version)
+         * or the default version (if we are ouside of a version, e.g. the homepage)
+         */}}
+      {{ $currentSection := .FirstSection.Params.versionId | default .Site.Params.versions.current }}
       {{ range .Site.Home.Sections }}
-        {{ if eq .Title "1.7" }}
-          {{if eq .Site.Params.ordersectionsby "title"}}
-            {{range .Sections.ByTitle}}
-              {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
-            {{end}}
-          {{else}}
-            {{range .Sections.ByWeight}}
-              {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
-            {{end}}
-          {{end}}
-        {{ end }}
+          {{ if eq $currentSection .Params.versionId }}
+              {{if eq .Site.Params.ordersectionsby "title"}}
+                  {{range .Sections.ByTitle}}
+                      {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
+                  {{end}}
+              {{else}}
+                  {{range .Sections.ByWeight}}
+                      {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
+                  {{end}}
+              {{end}}
+          {{ end }}
       {{ end }}
     </ul>
 
