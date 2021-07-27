@@ -1,0 +1,39 @@
+{{ if and
+    .Site.Params.versions.current
+    .FirstSection.Params.versionId
+    (ne .FirstSection.Params.versionId .Site.Params.versions.current)
+-}}
+    {{/* Show the canonical link if this page is not in the current version
+       * AND a copy of this page exists in the current version section
+       */ -}}
+    {{- $pagePathParts := (split .File.Path "/") }}
+    {{- $basePath := delimit (after 1 $pagePathParts) "/" }}
+    {{- $canonicalPath := printf "%s/%s" .Site.Params.versions.current $basePath }}
+    {{- $canonicalPage := "" }}
+    {{- with .Site.GetPage $canonicalPath -}}
+        {{ $canonicalPage = . }}
+    {{- end }}
+    {{- $currentVersionPage := .Site.GetPage (printf "/%s" .Site.Params.versions.current) }}
+    {{- if gt .FirstSection.Params.versionId .Site.Params.versions.current }}
+        <div class="notices note">
+          <p><strong>Notice:</strong> You are browsing the documentation for {{ .FirstSection.Params.menuTitle }}, which is currently in development.</p>
+              {{- if ne $canonicalPage "" }}
+                  You might want to read <a href="{{ $canonicalPage.RelPermalink }}">the documentation for the current version</a>, {{ $currentVersionPage.Params.menuTitle }}.
+              {{- else }}
+                  You might want to look at the current version, <a href="{{ $currentVersionPage.RelPermalink }}">{{ $currentVersionPage.Params.menuTitle }}</a>.
+              {{- end }}
+          </p>
+        </div>
+    {{- else }}
+        <div class="notices info">
+          <p><strong>Warning:</strong> You are browsing the documentation for {{ .FirstSection.Params.menuTitle }}, which is outdated.</p>
+          <p>
+              {{- if ne $canonicalPage "" }}
+                  You might want to read <a href="{{ $canonicalPage.RelPermalink }}">an updated version of this page</a> for the current version, {{ $currentVersionPage.Params.menuTitle }}.
+              {{- else }}
+                  You might want to look at the current version, <a href="{{ $currentVersionPage.RelPermalink }}">{{ $currentVersionPage.Params.menuTitle }}</a>.
+              {{- end }}
+          </p>
+        </div>
+    {{- end -}}
+{{- end -}}
