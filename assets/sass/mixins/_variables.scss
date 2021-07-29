@@ -23,6 +23,12 @@ $menuSearchBgColor: #840e5f; /* Search field background color (by default border
 $menuSearchBoxColor: $primaryColor; /* Override search field border color */
 $menuSearchBoxIconsColor: #fda1a1; /* Override search field icons color */
 
+$versionSelectorBorderColor: #777;
+$versionSelectorHighlightColor: #999;
+$versionSelectorHighlightBgColor: #433;
+$versionSelectorDropdownHighlightColor: #777;
+$versionSelectorSize: 200px;
+
 $menuSectionsActiveBgColor: #2b2020; /* Background color of the active section and its childs */
 $menuSectionsBgColor: #312525; /* Background color of other sections */
 $menuSectionsLinkColor: #ccc; /* Color of links in menu */

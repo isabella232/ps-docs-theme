@@ -245,4 +245,84 @@ $text-trailing-indent: 0.5rem;
       padding-left: 1rem;
     }
   }
+
+  // version selector
+
+  .version-selector-container {
+    position:relative;
+    height: 50px;
+  }
+
+  .version-selector {
+    position: absolute;
+    width: $versionSelectorSize;
+    margin: 0 1rem 1rem 1rem;
+
+    .version-selector-current {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.25rem 0.5rem;
+      color: $versionSelectorBorderColor;
+      border: 1px solid $versionSelectorBorderColor;
+      border-radius: 4px;
+      transition: all 0.25s;
+      cursor: default;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      polygon {
+        fill: $versionSelectorBorderColor;
+      }
+    }
+
+    .version-selector-dropdown {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      width: $versionSelectorSize;
+      background: #fff;
+      border-radius: 0 0 4px 4px;
+      a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $mainTextColor;
+
+        &:hover {
+          color: $versionSelectorDropdownHighlightColor;
+        }
+      }
+
+      .version-selector-meta {
+        display: inline;
+        font-size: 50%;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #999;
+      }
+
+    }
+
+    &:hover, &.hover {
+      z-index: 1;
+      box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, .2);
+
+      .version-selector-current {
+        color: $versionSelectorHighlightColor;
+        background: $versionSelectorHighlightBgColor;
+        border-color: $versionSelectorHighlightBgColor;
+      }
+
+      .version-selector-dropdown {
+        height: initial;
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+    }
+  }
 }
+
