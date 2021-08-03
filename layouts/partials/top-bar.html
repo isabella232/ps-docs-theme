@@ -2,20 +2,25 @@
 <div>
   <div id="top-bar">
     {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
-      {{ $File := .File }}
-      {{ $Site := .Site }}
-      {{ with $File.Path }}
+      {{- $ghPath := replace .File.Dir "\\" "/" }}
+      {{ if and
+        .Site.Params.versions.current
+        .FirstSection.Params.versionGithubPath
+      }}
+        {{- $pagePathParts := (split (replace .File.Dir "\\" "/") "/") }}
+        {{- $basePath := delimit (after 1 $pagePathParts) "/" }}
+        {{- $ghPath = printf "%s/%s" .FirstSection.Params.versionGithubpath $basePath }}
+      {{ end }}
       <div id="top-github-link">
-        <a class="github-link" title='{{T "Improve-this-page"}}' href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
+        <a class="github-link" title='{{T "Improve-this-page"}}' href="{{ .Site.Params.editURL }}{{ $ghPath }}{{ .File.LogicalName }}" target="blank">
           <i class="fa fa-pencil"></i>
           <span id="top-github-link-text">{{T "Improve-this-page"}}</span>
         </a>
-        <a class="how-to-improve" href="{{ $Site.Params.howToContributeURL }}">
+        <a class="how-to-improve" href="{{ .Site.Params.howToContributeURL }}">
           <i class="fa fa-question-circle"></i>
           <span>How</span>
         </a>
       </div>
-      {{ end }}
     {{ end }}
     <div id="breadcrumbs" itemscope="" itemtype="http://schema.org/breadcrumb">
       <span id="sidebar-toggle-span">
