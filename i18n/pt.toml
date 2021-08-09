@@ -11,7 +11,7 @@ other = "Anexos"
 other = "Erro"
 
 [message-404]
-other = "Ops. Parece que a página não existe ¯\\_(ツ)_/¯."
+other = "Ops. Parece que a página não existe."
 
 [Go-to-homepage]
 other = "Ir para o início"

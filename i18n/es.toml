@@ -11,7 +11,7 @@ other = "Adjuntos"
 other = "Error"
 
 [message-404]
-other = "Ups. Parece que la página no existe ¯\\_(ツ)_/¯."
+other = "Ups. Parece que la página no existe."
 
 [Go-to-homepage]
 other = "Ir al inicio"

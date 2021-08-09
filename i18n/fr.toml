@@ -11,7 +11,7 @@ other = "Pièces jointes"
 other = "Erreur"
 
 [message-404]
-other = "Oups. On dirait que cette page n'existe pas ¯\\_(ツ)_/¯"
+other = "Oups. On dirait que cette page n'existe pas"
 
 [Go-to-homepage]
 other = "Vers la page d'accueil"
