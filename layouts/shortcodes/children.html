@@ -49,21 +49,29 @@
 
 					{{(printf "<h%d>" $numn)|safeHTML}}
 					<a href="{{.RelPermalink}}" >{{ .Title }}</a>
+					{{if $.description}}
+						{{if .Description}}
+							<p>{{.Description}}</p>
+						{{else}}
+							<p>{{.Summary}}</p>
+						{{end}}
+					{{end}}
 					{{(printf "</h%d>" $numn)|safeHTML}}
 
 				{{else}}
 					{{(printf "<%s>" $.style)|safeHTML}}
 					<a href="{{.RelPermalink}}" >{{ .Title }}</a>
+					{{if $.description}}
+						{{if .Description}}
+							<p>{{.Description}}</p>
+						{{else}}
+							<p>{{.Summary}}</p>
+						{{end}}
+					{{end}}
 					{{(printf "</%s>" $.style)|safeHTML}}
 				{{end}}
 
-				{{if $.description}}
-					{{if .Description}}
-						<p>{{.Description}}</p>
-					{{else}}
-						<p>{{.Summary}}</p>
-					{{end}}
-				{{end}}
+
 			{{end}}
 			{{ if lt $.count $.depth}}
 
