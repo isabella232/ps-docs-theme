@@ -1,18 +1,6 @@
 @import "variables";
 
 @font-face {
-  font-family: 'Novacento Sans Wide';
-  src: url($fontPath + "Novecentosanswide-UltraLight-webfont.eot");
-  src: url($fontPath + "Novecentosanswide-UltraLight-webfont.eot?#iefix") format("embedded-opentype"),
-  url($fontPath + "Novecentosanswide-UltraLight-webfont.woff2") format("woff2"),
-  url($fontPath + "Novecentosanswide-UltraLight-webfont.woff") format("woff"),
-  url($fontPath + "Novecentosanswide-UltraLight-webfont.ttf") format("truetype"),
-  url($fontPath + "Novecentosanswide-UltraLight-webfont.svg#novecento_sans_wideultralight") format("svg");
-  font-style: normal;
-  font-weight: 200;
-}
-
-@font-face {
   font-family: 'Work Sans';
   font-style: normal;
   font-weight: 300;
