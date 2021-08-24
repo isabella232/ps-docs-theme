@@ -4,6 +4,7 @@
   font-family: 'Work Sans';
   font-style: normal;
   font-weight: 300;
+  font-display: swap;
   src: url($fontPath + "Work_Sans_300.eot?#iefix") format("embedded-opentype"),
   url($fontPath + "Work_Sans_300.woff") format("woff"),
   url($fontPath + "Work_Sans_300.woff2") format("woff2"),
@@ -15,6 +16,7 @@
   font-family: 'Work Sans';
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
   src: url($fontPath + "Work_Sans_500.eot?#iefix") format("embedded-opentype"),
   url($fontPath + "Work_Sans_500.woff") format("woff"),
   url($fontPath + "Work_Sans_500.woff2") format("woff2"),
