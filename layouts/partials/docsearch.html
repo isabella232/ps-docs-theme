@@ -1,0 +1,19 @@
+{{/* First sections (root sections) are used for versions.
+   * We want the search results to be related to the current version (if the page we are in is within that version)
+   * or to the default version (if we are ouside of a version, e.g. the homepage)
+   */}}
+{{ $currentSection := .FirstSection.Params.versionId | default .Site.Params.versions.current }}
+{{ if  .Site.Params.docSearch }}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript">
+    docsearch({
+      apiKey: '{{ .Site.Params.docSearch.apiKey }}',
+      indexName: '{{ .Site.Params.docSearch.indexName }}',
+      facetFilters: [
+        'version:{{ $currentSection }}'
+      ],
+      inputSelector: '#search-by',
+      debug: false
+    });
+  </script>
+{{ end }}
