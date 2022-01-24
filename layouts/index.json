@@ -1,3 +1,4 @@
+{{- if and (not .Site.Params.disableSearch) (not .Site.Params.docSearch) -}}
 [{{ range $index, $page := .Site.Pages }}
 {{- if ne $page.Type "json" -}}
 {{- if and $index (gt $index 0) -}},{{- end }}
@@ -10,3 +11,4 @@
 }
 {{- end -}}
 {{- end -}}]
+{{- end -}}
