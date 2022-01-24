@@ -1,0 +1,30 @@
+{{/* First sections (root sections) are used for versions.
+   * We want the search results to be related to the current version (if the page we are in is within that version)
+   * or to the default version (if we are ouside of a version, e.g. the homepage)
+   */}}
+{{ $currentSection := .FirstSection.Params.versionId | default .Site.Params.versions.current }}
+{{ if  .Site.Params.docSearch }}
+  <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>
+  <script type="text/javascript">
+    docsearch({
+      appId: '{{ .Site.Params.docSearch.appId }}',
+      apiKey: '{{ .Site.Params.docSearch.apiKey }}',
+      indexName: '{{ .Site.Params.docSearch.indexName }}',
+      placeholder: 'Search DevDocs',
+      searchParameters: {
+        facetFilters: [
+          'version:{{ $currentSection }}'
+        ],
+      },
+      container: '#docsearch-container',
+    });
+  </script>
+{{ else }}
+  <script type="text/javascript">
+    var baseurl = "{{.Site.BaseURL}}";
+  </script>
+  {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+  <script src="{{"js/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+  <script src="{{"js/auto-complete.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+  <script src="{{"js/search.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+{{ end }}

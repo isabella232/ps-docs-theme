@@ -28,7 +28,9 @@
         mermaid.initialize({ startOnLoad: true });
     </script>
     {{- end }}
-    {{ partial "docsearch.html" . }}
+    {{if not .Site.Params.disableSearch}}
+    {{ partial "search-script.html" . }}
+    {{ end }}
     {{ partial "custom-footer.html" . }}
   </body>
 </html>
