@@ -6,9 +6,7 @@
     <div id="header">
       {{ partial "logo.html" . }}
     </div>
-    {{if not .Site.Params.disableSearch}}
-        {{ partial "search.html" . }}
-    {{end}}
+    {{ partial "search-field.html" . }}
   </div>
 
   <div class="highlightable">
